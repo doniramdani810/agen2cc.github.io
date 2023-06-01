@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <style>
+    /* CSS styling */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Permintaan Terkirim</h2>
+    <div class="request-container">
+      <h3>Detail Permintaan</h3>
+      <div class="request-details">
+        <p><span>Gmail 2captcha:</span> <span id="gmail"></span></p>
+        <p><span>Jumlah:</span> <span id="jumlah"></span></p>
+        <p><span>Metode Pembayaran:</span> <span id="metode"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    function fillRequestDetails() {
+      const gmailElement = document.getElementById('gmail');
+      const jumlahElement = document.getElementById('jumlah');
+      const metodeElement = document.getElementById('metode');
+
+      const gmail = getParameterByName('gmail');
+      const jumlah = getParameterByName('jumlah');
+      const metode = getParameterByName('metode');
+
+      gmailElement.textContent = gmail;
+      jumlahElement.textContent = jumlah;
+      metodeElement.textContent = metode;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      fillRequestDetails();
+    });
+  </script>
+</body>
+</html>
